@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  web:
+    image: jlsolomon/libraryphp
+    container_name: php
+    links:
+      - "db:cldadmifinals_default"
+    depends_on:
+      - db
+    volumes:
+      - ./var/www/html/
+    ports:
+       - "8000:80"
+    stdin_open: true
+    tty: true
+
+  db:
+    image: jlsolomon/librarydb
+    container_name: db
+    ports:
+      - "3306:3306"
